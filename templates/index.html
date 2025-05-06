@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Encrypt/Decrypt Tool</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -11,52 +11,49 @@
   <div class="bg-gray-800 rounded-2xl shadow-2xl p-8 w-full max-w-2xl">
     <h1 class="text-3xl font-bold mb-6 text-center text-green-400">🔐 Encrypt & Decrypt</h1>
 
+    <!-- Text Encryption Form -->
     <form action="/encrypt" method="post" class="space-y-4 mb-6">
       <textarea name="text" placeholder="Enter text to encrypt..." required rows="4"
         class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"></textarea>
       <input type="password" name="password" placeholder="Enter password..." required
         class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500" />
       <button type="submit"
-        class="w-full py-2 bg-green-500 hover:bg-green-600 rounded-lg font-semibold transition duration-300">Encrypt 🔐</button>
+        class="w-full py-2 bg-green-500 hover:bg-green-600 rounded-lg font-semibold transition duration-300">Encrypt Text 🔐</button>
     </form>
 
+    <!-- Text Decryption Form -->
     <form action="/decrypt" method="post" class="space-y-4 mb-6">
       <textarea name="encrypted_text" placeholder="Paste encrypted text to decrypt..." required rows="4"
         class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
       <input type="password" name="password" placeholder="Enter password..." required
         class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" />
       <button type="submit"
-        class="w-full py-2 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition duration-300">Decrypt 🔓</button>
+        class="w-full py-2 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition duration-300">Decrypt Text 🔓</button>
+    </form>
+
+    <!-- File Encryption Form -->
+    <form action="/encrypt_file" method="post" enctype="multipart/form-data" class="space-y-4 mb-6">
+      <input type="file" name="file" required
+        class="block w-full text-sm text-white"/>
+      <input type="password" name="password" placeholder="Enter password..." required
+        class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+      <button type="submit"
+        class="w-full py-2 bg-yellow-500 hover:bg-yellow-600 rounded-lg font-semibold transition duration-300">Encrypt File 📁</button>
+    </form>
+
+    <!-- File Decryption Form -->
+    <form action="/decrypt_file" method="post" enctype="multipart/form-data" class="space-y-4">
+      <input type="file" name="file" required
+        class="block w-full text-sm text-white"/>
+      <input type="password" name="password" placeholder="Enter password..." required
+        class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500" />
+      <button type="submit"
+        class="w-full py-2 bg-red-500 hover:bg-red-600 rounded-lg font-semibold transition duration-300">Decrypt File 🧩</button>
     </form>
 
     {% if result %}
       <div class="bg-gray-700 p-4 rounded-lg text-sm break-words mb-3">
         <p class="text-gray-300 mb-1">🔎 Result:</p>
-        <textarea id="output" readonly class="w-full p-2 rounded bg-gray-800 text-green-300 resize-none" rows="4">{{ result }}</textarea>
-        {% if copied %}
-          <button onclick="copyToClipboard()" class="mt-2 px-4 py-1 bg-green-500 hover:bg-green-600 text-white rounded">
-            Copy to Clipboard 📋
-          </button>
-        {% endif %}
-      </div>
-    {% endif %}
-
-    <p class="text-center text-gray-500 text-xs mt-4">Built with ❤️ + AES256 + Custom Cipher</p>
-  </div>
-
-  <script>
-    function copyToClipboard() {
-      const output = document.getElementById("output");
-      output.select();
-      output.setSelectionRange(0, 99999);
-      document.execCommand("copy");
-
-      const toast = document.createElement("div");
-      toast.innerText = "Copied!";
-      toast.className = "fixed bottom-6 right-6 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50";
-      document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), 2000);
-    }
-  </script>
-</body>
-</html>
+        <textarea id="output" readonly class="w-full p-2 rounded bg
+::contentReference[oaicite:0]{index=0}
+ 
