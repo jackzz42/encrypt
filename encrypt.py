@@ -1,12 +1,17 @@
-
 from flask import Flask, render_template, request, send_file
 from cryptography.fernet import Fernet
 from io import BytesIO
-import os
+import base64
+import hashlib
+from getpass import getpass
 
 app = Flask(__name__)
-key = Fernet.generate_key()
-cipher = Fernet(key)
+
+# Function to generate key based on password
+def generate_key(password: str):
+    # Hash the password to get a 32-byte key for Fernet (cryptography)
+    key = base64.urlsafe_b64encode(hashlib.sha256(password.encode()).digest())
+    return key
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -14,9 +19,17 @@ def index():
     download_file = None
     filename = None
     mode = None
+    key = None
 
+    # Get password from the user for generating a consistent key
     if request.method == 'POST':
         mode = request.form.get('mode')
+        password = request.form.get('password')  # Add password input for key generation
+        
+        # Generate the encryption key based on the provided password
+        key = generate_key(password)
+        cipher = Fernet(key)
+
         text = request.form.get('text')
         file = request.files.get('file')
 
@@ -50,8 +63,8 @@ def index():
 
     return render_template('index.html', result=result_text, mode=mode) 
 
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
+
 
 
