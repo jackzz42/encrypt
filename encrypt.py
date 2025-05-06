@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, send_file
 from cryptography.fernet import Fernet
 from io import BytesIO
@@ -50,8 +51,7 @@ def index():
     return render_template('index.html', result=result_text, mode=mode) 
 
 
- if __name__ == '__main__':
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
-
 
 
