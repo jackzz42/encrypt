@@ -6,3 +6,4 @@ gunicorn
 
 
 pycryptodome
+cryptography==39.0.1
