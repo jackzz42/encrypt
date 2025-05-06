@@ -3,57 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Encrypt/Decrypt Tool</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Encryptor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="bg-gradient-to-br from-gray-900 to-gray-700 min-h-screen flex items-center justify-center text-white font-sans">
+<body>
+  <div class="container">
+    <h1>Text & File Encryptor/Decryptor</h1>
 
-  <div class="bg-gray-800 rounded-2xl shadow-2xl p-8 w-full max-w-2xl">
-    <h1 class="text-3xl font-bold mb-6 text-center text-green-400">🔐 Encrypt & Decrypt</h1>
-
-    <!-- Text Encryption Form -->
-    <form action="/encrypt" method="post" class="space-y-4 mb-6">
-      <textarea name="text" placeholder="Enter text to encrypt..." required rows="4"
-        class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"></textarea>
-      <input type="password" name="password" placeholder="Enter password..." required
-        class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500" />
-      <button type="submit"
-        class="w-full py-2 bg-green-500 hover:bg-green-600 rounded-lg font-semibold transition duration-300">Encrypt Text 🔐</button>
+    <!-- TEXT ENCRYPTION/DECRYPTION FORM -->
+    <form method="POST" action="/encrypt" id="encryptForm">
+      <textarea name="text" placeholder="Enter text to encrypt..." required></textarea>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Encrypt Text</button>
     </form>
 
-    <!-- Text Decryption Form -->
-    <form action="/decrypt" method="post" class="space-y-4 mb-6">
-      <textarea name="encrypted_text" placeholder="Paste encrypted text to decrypt..." required rows="4"
-        class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
-      <input type="password" name="password" placeholder="Enter password..." required
-        class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      <button type="submit"
-        class="w-full py-2 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition duration-300">Decrypt Text 🔓</button>
+    <form method="POST" action="/decrypt" id="decryptForm">
+      <textarea name="encrypted_text" placeholder="Paste encrypted text..." required></textarea>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Decrypt Text</button>
     </form>
 
-    <!-- File Encryption Form -->
-    <form action="/encrypt_file" method="post" enctype="multipart/form-data" class="space-y-4 mb-6">
-      <input type="file" name="file" required
-        class="block w-full text-sm text-white"/>
-      <input type="password" name="password" placeholder="Enter password..." required
-        class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-      <button type="submit"
-        class="w-full py-2 bg-yellow-500 hover:bg-yellow-600 rounded-lg font-semibold transition duration-300">Encrypt File 📁</button>
-    </form>
-
-    <!-- File Decryption Form -->
-    <form action="/decrypt_file" method="post" enctype="multipart/form-data" class="space-y-4">
-      <input type="file" name="file" required
-        class="block w-full text-sm text-white"/>
-      <input type="password" name="password" placeholder="Enter password..." required
-        class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500" />
-      <button type="submit"
-        class="w-full py-2 bg-red-500 hover:bg-red-600 rounded-lg font-semibold transition duration-300">Decrypt File 🧩</button>
-    </form>
-
+    <!-- Show Result -->
     {% if result %}
-      <div class="bg-gray-700 p-4 rounded-lg text-sm break-words mb-3">
-        <p class="text-gray-300 mb-1">🔎 Result:</p>
-        <textarea id="output" readonly class="w-full p-2 rounded bg
-::contentReference[oaicite:0]{index=0}
+    <div class="result">
+      <h3>Result:</h3>
+      <textarea readonly>{{ result }}</textarea>
+      {% if copied %}
+        <p>✔ Copied to clipboard.</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- FILE ENCRYPTION FORM -->
+    <form method="POST" action="/encrypt_file" enctype="multipart/form-data">
+      <input type="file" name="file" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Encrypt File</button>
+    </form>
+
+    <!-- FILE DECRYPTION FORM -->
+    <form method="POST" action="/decrypt_file" enctype="multipart/form-data">
+      <input type="file" name="file" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Decrypt File</button>
+    </form>
+  </div>
+</body>
+</html>
+
  
