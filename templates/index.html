@@ -2,43 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Secure Encryptor</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt/Decrypt</title>
 </head>
-<body class="bg-gray-950 text-white min-h-screen flex items-center justify-center">
-    <div class="bg-gray-900 p-8 rounded-xl shadow-2xl w-full max-w-xl">
-        <h1 class="text-3xl font-bold mb-4 text-center text-green-400">Secure Local Encryptor</h1>
-        <form method="POST" enctype="multipart/form-data" class="space-y-4">
-            <label class="block">Choose Mode:</label>
-            <select name="mode" class="w-full p-2 rounded bg-gray-800 text-white">
-                <option value="encrypt" {% if mode == 'encrypt' %}selected{% endif %}>Encrypt</option>
-                <option value="decrypt" {% if mode == 'decrypt' %}selected{% endif %}>Decrypt</option>
-            </select>
+<body>
+    <h1>Encrypt/Decrypt Tool</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="password">Enter Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
 
-            <div>
-                <label class="block">Enter Text (optional):</label>
-                <textarea name="text" class="w-full p-2 rounded bg-gray-800 text-white" rows="4" placeholder="Write something..."></textarea>
-            </div>
+        <label for="mode">Choose Mode:</label>
+        <select name="mode" id="mode">
+            <option value="encrypt">Encrypt</option>
+            <option value="decrypt">Decrypt</option>
+        </select><br><br>
 
-            <div>
-                <label class="block">Or Upload File:</label>
-                <input type="file" name="file" class="w-full bg-gray-800 text-white p-2 rounded" />
-            </div>
+        <label for="text">Enter Text (for text encryption):</label>
+        <textarea name="text" id="text" rows="4" cols="50"></textarea><br><br>
 
-            <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-                Submit
-            </button>
-        </form>
+        <label for="file">Select File (for file encryption):</label>
+        <input type="file" name="file" id="file"><br><br>
 
-        {% if result %}
-            <div class="mt-6 p-4 bg-gray-800 rounded text-sm">
-                <h2 class="text-lg font-semibold text-green-300">{{ 'Encrypted Text:' if mode == 'encrypt' else 'Decrypted Text:' }}</h2>
-                <textarea readonly class="w-full bg-gray-900 mt-2 p-2 rounded text-white">{{ result }}</textarea>
-            </div>
-        {% endif %}
-    </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if result %}
+        <h2>Result:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
 </body>
 </html>
 
-
- 
