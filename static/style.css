@@ -1,67 +1,42 @@
 body {
-    font-family: sans-serif;
-    background-color: #1e1e1e;
-    color: #f1f1f1;
-    display: flex;
-    justify-content: center;
-    padding-top: 50px;
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  padding: 20px;
+  color: #333;
 }
 
 .container {
-    width: 90%;
-    max-width: 600px;
-    background: #2b2b2b;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px #000;
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #4caf50;
-}
-
-textarea, input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    background: #3a3a3a;
-    color: #f1f1f1;
-    border: none;
-    border-radius: 5px;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
+textarea, input[type="password"], input[type="file"] {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 button {
-    padding: 10px 20px;
-    background: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  background-color: #2d89ef;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 button:hover {
-    background: #388e3c;
+  background-color: #1b5fa0;
 }
 
-.result-box {
-    margin-top: 20px;
-}
-
-.result-box textarea {
-    background: #222;
-    color: #0f0;
+.result textarea {
+  height: 150px;
 }
 
 
